@@ -21,37 +21,37 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity motion is 
 port(		
-			CLK6			: in  std_logic; -- 6MHz* on schematic
-			PHI2			: in  std_logic;
-			DMA_n			: in  std_logic_vector(7 downto 0);
-			PRAM			: in  std_logic_vector(7 downto 0);
+			CLK6		: in  std_logic; -- 6MHz* on schematic
+			PHI2		: in  std_logic;
+			DMA_n		: in  std_logic_vector(7 downto 0);
+			PRAM		: in  std_logic_vector(7 downto 0);
 			H256_s		: in  std_logic; -- 256H* on schematic
 			VCount		: in  std_logic_vector(7 downto 0);
 			HCount		: in  std_logic_vector(8 downto 0);
 			Load_n		: buffer std_logic_vector(8 downto 1);
 			Object		: out std_logic_vector(4 downto 1);
-			Object_n		: out std_logic_vector(4 downto 1)
+			Object_n	: out std_logic_vector(4 downto 1)
 			);
 end motion;
 
 architecture rtl of motion is
 
-signal phi1			: std_logic;
+signal phi1		: std_logic;
 
-signal H256_n			: std_logic;
-signal H64 				: std_logic;
-signal H32				: std_logic;
-signal H16				: std_logic;
-signal H8				: std_logic;
+signal H256_n		: std_logic;
+signal H64 		: std_logic;
+signal H32		: std_logic;
+signal H16		: std_logic;
+signal H8		: std_logic;
 
 signal P6_R5sum		: std_logic_vector(7 downto 0);
-signal Match_n			: std_logic := '1';
-signal R6_8				: std_logic := '1';
+signal Match_n		: std_logic := '1';
+signal R6_8		: std_logic := '1';
 
-signal P7_in			: std_logic_vector(3 downto 0) := (others => '0');
-signal P7_out			: std_logic_vector(9 downto 0) := (others => '1');
-signal R4_in			: std_logic_vector(3 downto 0) := (others => '0');
-signal R4_out			: std_logic_vector(9 downto 0) := (others => '1');
+signal P7_in		: std_logic_vector(3 downto 0) := (others => '0');
+signal P7_out		: std_logic_vector(9 downto 0) := (others => '1');
+signal R4_in		: std_logic_vector(3 downto 0) := (others => '0');
+signal R4_out		: std_logic_vector(9 downto 0) := (others => '1');
 
 signal Object1_Hpos	: std_logic_vector(7 downto 0) := (others => '0');
 signal Object2_Hpos	: std_logic_vector(7 downto 0) := (others => '0');
@@ -68,7 +68,7 @@ signal Object2_Inh	: std_logic := '1';
 signal Object3_Inh	: std_logic := '1';
 signal Object4_Inh	: std_logic := '1';
 
-signal Vid				: std_logic_vector(15 downto 1) := (others => '0');
+signal Vid		: std_logic_vector(15 downto 1) := (others => '0');
 
 
 begin
@@ -94,11 +94,11 @@ port map(
 M6: entity work.m6_prom
 port map(
 	clock => clk6,
-   address => PRAM(2) & PRAM(7 downto 3) & P6_R5sum(3 downto 0),
+        address => PRAM(2) & PRAM(7 downto 3) & P6_R5sum(3 downto 0),
 	q => Vid(8 downto 5)
 	);
 
-	L6: entity work.l6_prom
+L6: entity work.l6_prom
 port map(
 	clock => clk6,
 	address => PRAM(2) & PRAM(7 downto 3) & P6_R5sum(3 downto 0),
