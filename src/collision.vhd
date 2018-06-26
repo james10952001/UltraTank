@@ -22,21 +22,21 @@ use IEEE.STD_LOGIC_1164.all;
 
 entity collision_detect is 
 port(		
-			Clk6					: in	std_logic;
-			Adr					: in  std_logic_vector(2 downto 0);
-			Object_n				: in  std_logic_vector(4 downto 1);
-			Playfield_n			: in  std_logic;
+			Clk6			: in	std_logic;
+			Adr			: in  std_logic_vector(2 downto 0);
+			Object_n		: in  std_logic_vector(4 downto 1);
+			Playfield_n		: in  std_logic;
 			CollisionReset_n	: in  std_logic_vector(4 downto 1);
-			Slam_n				: in  std_logic; -- Slam switch is read by collision detection mux
-			Collision_n			: out std_logic
+			Slam_n			: in  std_logic; -- Slam switch is read by collision detection mux
+			Collision_n		: out std_logic
 			);
 end collision_detect;
 
 architecture rtl of collision_detect is
 
 signal Col_latch_Q		: std_logic_vector(4 downto 1) := (others => '0');
-signal S1_n					: std_logic_vector(4 downto 1);
-signal R_n					: std_logic_vector(4 downto 1);
+signal S1_n			: std_logic_vector(4 downto 1);
+signal R_n			: std_logic_vector(4 downto 1);
 
 
 begin
@@ -65,7 +65,7 @@ begin
 		if R_n(2) = '0' then
 			Col_latch_Q(2) <= '0';
 		elsif S1_n(2) = '0' then 
-			Col_latch_Q(2) <= '1';
+			 Col_latch_Q(2) <= '1';
 		else
 			Col_latch_Q(2) <= Col_latch_Q(2);
 		end if;
