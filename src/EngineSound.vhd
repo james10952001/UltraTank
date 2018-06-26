@@ -29,26 +29,26 @@ generic(
 			constant Freq_tune : integer := 50 -- Value from 0-100 used to tune the overall engine sound frequency
 			);
 port(		
-			Clk_6			: in  std_logic; 
-			Reset			: in  std_logic;
+			Clk_6		: in  std_logic; 
+			Reset		: in  std_logic;
 			Ena_3k		: in  std_logic;
-			EngineData	: in	std_logic_vector(3 downto 0);
-			Motor			: out std_logic_vector(5 downto 0)
+			EngineData	: in  std_logic_vector(3 downto 0);
+			Motor		: out std_logic_vector(5 downto 0)
 			);
 end EngineSound;
 
 architecture rtl of EngineSound is
 
-signal RPM_val 				: integer range 1 to 350;
+signal RPM_val 			: integer range 1 to 350;
 signal Ramp_term_unfilt		: integer range 1 to 80000;
-signal Ramp_Count 			: integer range 0 to 80000;
-signal Ramp_term				: integer range 1 to 80000;
-signal Freq_mod				: integer range 0 to 400;
-signal Motor_Clk				: std_logic;
+signal Ramp_Count 		: integer range 0 to 80000;
+signal Ramp_term		: integer range 1 to 80000;
+signal Freq_mod			: integer range 0 to 400;
+signal Motor_Clk		: std_logic;
 
-signal Counter_A				: std_logic;
-signal Counter_B 				: unsigned(2 downto 0);
-signal Counter_A_clk			: std_logic;
+signal Counter_A		: std_logic;
+signal Counter_B 		: unsigned(2 downto 0);
+signal Counter_A_clk	        : std_logic;
 
 signal Motor_prefilter 		: unsigned(1 downto 0);
 signal Motor_filter_t1 		: unsigned(3 downto 0);
